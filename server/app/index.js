@@ -16,9 +16,16 @@ app.use(session({
   saveUninitialized: false
 }));
 
+// restricting these middleware to API calls to cut down on noise
+
+app.use((req, res, next) => {
+  req.session.counter = req.session.counter || 0;
+  req.session.counter++;
+  next();
+});
+
 app.use('/api', (req, res, next) => {
-  if (!req.session.counter) req.session.counter = 0;
-  console.log('counter', ++req.session.counter);
+  console.log('session', req.session);
   next();
 });
 
