@@ -16,6 +16,8 @@ app.use(session({
   saveUninitialized: false
 }));
 
+app.use(require('./passport.middleware'));
+
 // restricting these middleware to API calls to cut down on noise
 
 app.use((req, res, next) => {
