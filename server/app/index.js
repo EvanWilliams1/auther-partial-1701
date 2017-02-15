@@ -27,6 +27,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api', (req, res, next) => {
+  console.log('passport user', req.user && req.user.name);
   console.log('session', req.session);
   next();
 });
