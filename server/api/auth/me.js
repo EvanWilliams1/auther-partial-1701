@@ -38,4 +38,10 @@ router.post('/', function (req, res, next) {
   });
 });
 
+// logout, i.e. "please just forget `me`"
+router.delete('/', function (req, res, next) {
+  delete req.session.userId;
+  res.sendStatus(204);
+});
+
 module.exports = router;
