@@ -81,6 +81,13 @@ export const signupAndGoToUser = credentials => dispatch => {
   .catch(err => console.error('Problem signing up:', err));
 };
 
+export const retrieveLoggedInUser = () => dispatch => {
+  axios.get('/api/auth/me')
+  .then(resToData)
+  .then(user => dispatch(set(user)))
+  .catch(err => console.error('Problem fetching current user', err));
+};
+
 export const logout = () => dispatch => {
   axios.delete('/api/auth/me')
   .then(() => dispatch(remove()))
